@@ -1,19 +1,13 @@
 import React from "react";
 import { createClient } from "@supabase/supabase-js";
 
+//types
+import { Product } from "../types/Product";
+
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL,
   import.meta.env.VITE_SUPABASE_KEY
 );
-
-type Product = {
-  id: string;
-  name: string;
-  stock: number;
-  brand: string;
-  created_at: string;
-  ean: number;
-};
 
 export default function Products(): React.ReactElement {
   const [products, setProducts] = React.useState<Product[]>([]);
@@ -33,7 +27,9 @@ export default function Products(): React.ReactElement {
   return (
     <ul>
       {products.map((product) => (
-        <li key={product.name}>{product.name} - {product.stock}</li>
+        <li key={product.name}>
+          {product.name} - {product.stock}
+        </li>
       ))}
     </ul>
   );
